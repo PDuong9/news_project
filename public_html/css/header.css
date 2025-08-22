@@ -1,0 +1,246 @@
+/* Google font source */
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+header {
+    font-family: 'Indie Flower', cursive;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border-bottom: 2px solid #555;
+
+    position: fixed;
+    width: 98%;
+    z-index: 10;
+    top: 0;
+}
+
+.logo {
+    margin-right: auto;
+    height: 15px;
+    font-size: 20px;
+
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.5s ease-in-out;
+}
+
+.logo a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.logo a:hover {
+    transform: translateY(-4px);
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+}
+
+.nav-links li {
+    margin: 0 10px; 
+    color: white;
+    position: relative;
+}
+  
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    padding: 5px;
+}
+  
+.nav-links a:hover {
+    background-color: #555;
+    border-radius: 4px;
+    padding: 5px;
+    text-decoration: underline;
+}
+
+.nav-links a.active {
+    background-color: #555;
+    border-radius: 4px;
+    padding: 5px;
+    text-decoration: underline;
+    color: white; 
+}
+  
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.search-input {
+    padding: 5px 10px;
+    font-size: 21px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    display: none;
+}
+
+.search-bar.active .search-input {
+    display: inline-block;
+}
+
+.search-icon {
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 20px;
+    font-size: 22px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* ===== LOGIN BUTTON & LOGIN BOARD & SIGN UP BOARD ===== */
+.login-button {
+    background: none;
+    border: none;
+    color: greenyellow;
+    font-family: 'Indie Flower', cursive;  
+    font-size: 20px;                      
+    padding: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.login-button span {
+    display: inline-block;
+    font-weight: 600;
+    padding: 5px;
+}
+
+.login-button span:hover {
+    background-color: #555;
+    border-radius: 4px;
+    text-decoration: underline;
+}
+
+.login-board {
+    position: absolute;
+    top: 100%;
+    right: -25px;
+    width: auto;
+    height: auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    color: black;
+    font-size: 18px;
+    text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.link-button {
+    font-family: 'Indie Flower', cursive;  
+    font-size: 18px;
+    background: none;
+    border: none;
+    color: #9FC87E;
+    cursor: pointer;
+    padding: 0;
+}
+
+.link-button:hover {
+    text-decoration: underline;
+}
+
+#signInSection, #signUpSection {
+    transition: all 0.3s ease-in-out;
+}
+
+/* ===== SOCIAL LOGIN ICONS ===== */
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 10px;
+}
+
+.social-icon {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 120px;
+    padding: 2px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
+
+.social-icon img {
+    width: 35px;
+    height: 35px;
+}
+
+.login-board input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* ===== FORM ACTIONS ===== */
+.form-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2px;
+    gap: 20px;
+}
+
+.signinBtn {
+    background-color: #1aa142;
+    color: white;
+    padding: 10px;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.signinBtn:hover {
+    background-color: #168c38;
+}
+
+.signUpAgree {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.link-text {
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.link-text:hover {
+  text-decoration: underline;
+}

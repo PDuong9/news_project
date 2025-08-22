@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Page</title>
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <script type="module" src="./components/header-component.js" defer></script>
+    <script type="module" src="./components/footer-component.js" defer></script>
+    <script type="module" src="./js/game-fetch.js" defer></script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="header-container">
+            <!-- Header Component -->
+            <header-component></header-component>
+        </div>
+
+        <!-- Main Content -->
+         <div class="content">
+            <p id="loading">Loading news...</p>
+         </div>
+
+        <div class="footer-container">
+            <!-- Footer Component -->
+            <footer-component></footer-component>
+        </div>
+    </div>
+</body>
+</html>
