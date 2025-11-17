@@ -33,12 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
     //     }
     // ];
 
-    const category = ["business","health","entertainment","general","technology","science","sports"];
+    const categories = ["business","health","entertainment","general","technology","science","sports"];
     
     // Helper function to safely fetch and return results
     const failedSource = [];
-    const safeFetch = ({url}) =>
-        fetch(url)
+    const safeFetch = (categories) =>
+        fetch(`/api/news/${categories}`)
             // .then(res => res.json())
             .then(res => {
                 if (!res.ok) {
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return null;
             });
 
-    Promise.all(category.map(safeFetch)).then(results => {
+    Promise.all(categories.map(safeFetch)).then(results => {
         container.innerHTML = '';
         const articles = [];
 
