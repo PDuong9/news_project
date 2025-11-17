@@ -17,5 +17,5 @@ app.use("/api/news", newsRoute);
 
 // Start the server
 app.listen(port, host, () => {
-  console.log(`Server is running at https://${host}:${port}`);
+  console.log(`Server is running at http://${host}:${port}`);
 });
