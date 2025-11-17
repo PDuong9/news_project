@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  web:
+    image: myapp:1.0 # version tag for rollback safety
+    build: .
+    ports:
+      - "3000:3000" # accessible publicly
+    environment:
+      - NODE_ENV=production
+    restart: always # auto-restart if container crashes
+    command: node app.js

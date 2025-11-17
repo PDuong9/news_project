@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  web:
+    volumes:
+      - .:/usr/src/app # live sync with your local code
+    ports:
+      - "127.0.0.1:3000:3000" # only accessible on your machine
+    environment:
+      - NODE_ENV=development
+    command: nodemon app.js

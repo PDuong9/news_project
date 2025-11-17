@@ -1,21 +1,21 @@
 // This is main server
 
-const express = require('express');
+const express = require("express");
 
 // Routes imports
-const newsRoute = require('./routes/news')
+const newsRoute = require("./src/routes/news");
 
 const app = express();
-const host = '0.0.0.0';
-const port = 3000;
+const host = process.env.PORT || "0.0.0.0";
+const port = process.env.PORT || 3000;
 
 // Connect to public_html folder
-app.use(express.static('public_html'));
+app.use(express.static("src/public_html"));
 
 // Set up routes
-app.use('/api/news', newsRoute);
+app.use("/api/news", newsRoute);
 
 // Start the server
 app.listen(port, host, () => {
-    console.log(`Server is running at https://localhost:${port}`);
+  console.log(`Server is running at https://${host}:${port}`);
 });
