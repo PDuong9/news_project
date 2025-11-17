@@ -3,4 +3,6 @@ services:
   web:
     build: .
     expose:
-      - "3000"   # internal only, not mapped to host by default
+      - "3000" # internal only, not mapped to host by default
+    environment:
+      NEWS_API_KEY: "54f9eb335aff452192c71a0fdc90c621"

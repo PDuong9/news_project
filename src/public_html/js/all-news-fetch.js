@@ -2,36 +2,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.content');
     container.innerHTML = '<p id="loading">Loading news...</p>';
 
-    const sources = [
-        {
-            // Business
-            url: 'https://newsapi.org/v2/top-headlines?category=business&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-        },
-        {
-            // Entertainment
-            url: 'https://newsapi.org/v2/top-headlines?category=entertainment&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-        },
-        {
-            // General
-            url: 'https://newsapi.org/v2/top-headlines?category=general&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-        },
-        {
-            // Health
-            url: 'https://newsapi.org/v2/top-headlines?category=health&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-        },
-        {
-            // Science
-            url: 'https://newsapi.org/v2/top-headlines?category=science&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-        },
-        {
-            // Sports
-            url: 'https://newsapi.org/v2/top-headlines?category=sports&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-        },
-        {
-            // Technology
-            url: 'https://newsapi.org/v2/top-headlines?category=technology&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-        }
-    ];
+    // const sources = [
+    //     {
+    //         // Business
+    //         url: 'https://newsapi.org/v2/top-headlines?category=business&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
+    //     },
+    //     {
+    //         // Entertainment
+    //         url: 'https://newsapi.org/v2/top-headlines?category=entertainment&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
+    //     },
+    //     {
+    //         // General
+    //         url: 'https://newsapi.org/v2/top-headlines?category=general&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
+    //     },
+    //     {
+    //         // Health
+    //         url: 'https://newsapi.org/v2/top-headlines?category=health&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
+    //     },
+    //     {
+    //         // Science
+    //         url: 'https://newsapi.org/v2/top-headlines?category=science&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
+    //     },
+    //     {
+    //         // Sports
+    //         url: 'https://newsapi.org/v2/top-headlines?category=sports&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
+    //     },
+    //     {
+    //         // Technology
+    //         url: 'https://newsapi.org/v2/top-headlines?category=technology&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
+    //     }
+    // ];
+
+    const category = ["business","health","entertainment","general","technology","science","sports"];
     
     // Helper function to safely fetch and return results
     const failedSource = [];
@@ -50,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return null;
             });
 
-    Promise.all(sources.map(safeFetch)).then(results => {
+    Promise.all(category.map(safeFetch)).then(results => {
         container.innerHTML = '';
         const articles = [];
 

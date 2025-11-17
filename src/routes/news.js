@@ -1,8 +1,12 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const fetch = require('node-fetch');
+const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/:category', async (req, res) => {
+    const category = req.params.category;
+    const aptKey = process.env.NEWS_API_KEY;
     const url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=54f9eb335aff452192c71a0fdc90c621"
+    
     try {
         const response = await fetch(url);
         const data = await response.json();
