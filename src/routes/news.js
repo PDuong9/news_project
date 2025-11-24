@@ -20,9 +20,9 @@ router.get('/source/:source', async (req, res) => {
 
 // Top-headlines by query
 router.get('/query/:query', async (req, res) => {
-    const queries = req.params.query;
+    const query = req.params.query;
     const apiKey = process.env.NEWS_API_KEY;
-    const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(queries)}&language=en&sortBy=popularity&apiKey=${apiKey}`;
+    const url = `https://newsapi.org/v2/everything?q="${encodeURIComponent(query)}"&language=en&sortBy=relevancy&apiKey=${apiKey}`;
     fetchAndRespond(url, res);
 });
 
