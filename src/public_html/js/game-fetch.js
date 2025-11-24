@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     container.innerHTML = '<p id="loading">Loading news...</p>';
 
     const queries = [
-        '"gaming"',
         '"video game"',
         '"esports"',
         '"pc gaming"',
