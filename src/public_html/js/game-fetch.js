@@ -2,7 +2,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.content');
     container.innerHTML = '<p id="loading">Loading news...</p>';
 
-    const queries = ["game", "video game", "esports"];
+    const queries = [
+        '"gameing"',
+        '"video game"',
+        '"esports"',
+        '"pc gaming"',
+        '"console gaming"',
+        '"game development"',
+        '"game industry"'
+    ];
     
     // Helper function to safely fetch and return results
     const failedSource = [];
