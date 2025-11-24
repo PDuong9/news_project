@@ -1,8 +1,10 @@
+const { url } = require("inspector");
+
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.content');
     container.innerHTML = '<p id="loading">Loading news...</p>';
 
-    const categories = [
+    const items = [
         { type: "source", value: "bbc-news" },
         { type: "source", value: "al-jazeera-english" },
         { type: "source", value: "reuters" },
@@ -24,8 +26,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Helper function to safely fetch and return results
     const failedSource = [];
-    const safeFetch = (category) =>
-        fetch(`/api/news/${category}`)
+    const safeFetch = (items) => {
+        let url;
+        if (items.type === 'source') {
+            url = `/api/news/source/${source}`;
+        } else if (items.type === 'query') {
+            url = `/api/news/query/${query}`;
+        }
+
+        return fetch(url)
             .then(res => {
                 if (!res.ok) {
                     throw new Error(`HTTP Error! Status: ${res.status}`);
@@ -34,11 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(err => {
                 console.warn(`Fetch failed: `, err);
-                failedSource.push(category);
+                failedSource.push(items.value);
                 return null;
             });
+    };
 
-    Promise.all(categories.map(safeFetch)).then(results => {
+    Promise.all(items.map(safeFetch)).then(results => {
         container.innerHTML = '';
         const articles = [];
 

@@ -3,21 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     container.innerHTML = '<p id="loading">Loading news...</p>';
 
     const queries = ["game", "video game", "esports"];
-    // const sources = [
-    //     {
-    //         url: 'https://newsapi.org/v2/everything?q=game&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-    //     },
-    //     {
-    //         url: 'https://newsapi.org/v2/everything?q=video+game&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-    //     },
-    //     {
-    //         url: 'https://newsapi.org/v2/everything?q=esports&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-    //     }
-    // ];
     
     // Helper function to safely fetch and return results
     const failedSource = [];
-    const safeFetch = (query) =>
+    const safeFetch = (query) => {
         fetch(`api/news/query/${query}`)
             .then(res => {
                 if (!res.ok) {
@@ -30,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 failedSource.push(query);
                 return null;
             });
+    };
 
     Promise.all(queries.map(safeFetch)).then(results => {
         container.innerHTML = '';
