@@ -3,20 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     container.innerHTML = '<p id="loading">Loading news...</p>';
 
     const categories = ["sports"];
-    // const sources = [
-    //     {
-    //         url: 'https://newsapi.org/v2/top-headlines?category=sports&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-    //     },
-    //     // {
-    //     //     url: 'https://newsapi.org/v2/everything?q=sports&language=en&sortBy=popularity&apiKey=54f9eb335aff452192c71a0fdc90c621'
-    //     // },
-    //     // {
-    //     //     url: 'https://newsapi.org/v2/top-headlines?everything?q=la+liga&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-    //     // }
-    //     // {
-    //     //     url: 'https://newsdata.io/api/1/latest?apikey=pub_5c72a3e232cb4395b37553a5c9765d2d&q=sports&language=en&category=sports'
-    //     // }
-    // ];
     
     // Helper function to safely fetch and return results
     const failedSource = [];
