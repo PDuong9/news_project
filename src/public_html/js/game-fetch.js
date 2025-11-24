@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const failedSource = [];
     const safeFetch = async (query) => {
         try {
-            const res = fetch(`api/news/query/${query}`);
+            const res = await fetch(`api/news/query/${query}`);
             if (!res.ok) {
                 throw new Error(`HTTP Error! Status: ${res.status}`);
             }
