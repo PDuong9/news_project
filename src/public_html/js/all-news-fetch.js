@@ -2,44 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.content');
     container.innerHTML = '<p id="loading">Loading news...</p>';
 
-    // const sources = [
-    //     {
-    //         // Business
-    //         url: 'https://newsapi.org/v2/top-headlines?category=business&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-    //     },
-    //     {
-    //         // Entertainment
-    //         url: 'https://newsapi.org/v2/top-headlines?category=entertainment&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-    //     },
-    //     {
-    //         // General
-    //         url: 'https://newsapi.org/v2/top-headlines?category=general&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-    //     },
-    //     {
-    //         // Health
-    //         url: 'https://newsapi.org/v2/top-headlines?category=health&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-    //     },
-    //     {
-    //         // Science
-    //         url: 'https://newsapi.org/v2/top-headlines?category=science&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-    //     },
-    //     {
-    //         // Sports
-    //         url: 'https://newsapi.org/v2/top-headlines?category=sports&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-    //     },
-    //     {
-    //         // Technology
-    //         url: 'https://newsapi.org/v2/top-headlines?category=technology&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-    //     }
-    // ];
-
     const categories = ["business","health","entertainment","general","technology","science","sports"];
     
     // Helper function to safely fetch and return results
     const failedSource = [];
     const safeFetch = (categories) =>
         fetch(`/api/news/${categories}`)
-            // .then(res => res.json())
             .then(res => {
                 if (!res.ok) {
                     throw new Error(`HTTP Error! Status: ${res.status}`);
@@ -96,15 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         <a href="${article.url}" target="_blank">Read more</a>
                     `;
                 }
-
-                // articleDiv.innerHTML = `
-                //     <h2>${article.title}</h2>
-                //     <img src="${imgURL}" alt="Article Image" class="news-img" onerror="this.onerror=null; this.src='img/news-image.jpg';">
-                //     <p>${article.description || ''}</p>
-                //     <p class="news-source">Source: ${publisher}</p>
-                //     <p class="news-date">Published at: ${publishedAt}</p>
-                //     <a href="${article.url}" target="_blank">Read more</a>
-                // `;
 
                 container.appendChild(articleDiv);
             });

@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const failedSource = [];
     const safeFetch = ({url}) =>
         fetch(url)
-            // .then(res => res.json())
             .then(res => {
                 if (!res.ok) {
                     throw new Error(`HTTP Error! Status: ${res.status}`);
@@ -81,10 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (failedSource.length > 0) {
-            const errorNotice = document.createElement('div');
-            errorNotice.className = 'error';
-            errorNotice.innerHTML = `<p>Failed to fetch news from: ${failedSource.join(', ')}</p>`;
-            container.prepend(errorNotice);
+            // const errorNotice = document.createElement('div');
+            // errorNotice.className = 'error';
+            // errorNotice.innerHTML = `<p>Failed to fetch news from: ${failedSource.join(', ')}</p>`;
+            // container.prepend(errorNotice);
+            console.log("Failed to fetch news from: " + failedSource.join(', '));
         }
     });
 });
