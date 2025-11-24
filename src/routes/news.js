@@ -5,7 +5,7 @@ const router = express.Router();
 router.get('/:category', async (req, res) => {
     const category = req.params.category;
     const apiKey = process.env.NEWS_API_KEY;
-    const src = "https://newsapi.org/v2/top-headlines?country=us&apiKey=54f9eb335aff452192c71a0fdc90c621"
+    const src = `https://newsapi.org/v2/top-headlines?country=us&category=${encodeURIComponent(category)}&language=en&apiKey=${apiKey}`
     
     try {
         const response = await fetch(src);
