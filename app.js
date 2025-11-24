@@ -3,7 +3,7 @@
 const express = require("express");
 
 // Routes imports
-const newsRoute = require("./src/routes/news");
+const newsRouter = require("./src/routes/news");
 
 const app = express();
 const host = process.env.HOST || "0.0.0.0";
@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000;
 app.use(express.static("src/public_html"));
 
 // Set up routes
-app.use("/api/news", newsRoute);
+app.use("/api/news", newsRouter);
 
 // Start the server
 app.listen(port, host, () => {

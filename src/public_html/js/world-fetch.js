@@ -2,23 +2,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.content');
     container.innerHTML = '<p id="loading">Loading news...</p>';
 
-    const sources = [
-        {
-            url: 'https://newsapi.org/v2/top-headlines?sources=bbc-news,al-jazeera-english,reuters,cnn&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-        },
-        {
-            url: 'https://newsapi.org/v2/everything?q=international+OR+global+OR+geopolitics+OR+"united+nations"&language=en&sortBy=popularity&apiKey=54f9eb335aff452192c71a0fdc90c621'
-        },
-        // {
-        //     url: 'https://newsapi.org/v2/top-headlines?everything?q=la+liga&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-        // }
+    const categories = [
+        { type: "source", value: "bbc-news" },
+        { type: "source", value: "al-jazeera-english" },
+        { type: "source", value: "reuters" },
+        { type: "source", value: "cnn" },
+        { type: "query", value: "international OR global OR geopolitics OR united nations" }
     ];
+
+    // const sources = [
+    //     {
+    //         url: 'https://newsapi.org/v2/top-headlines?sources=bbc-news,al-jazeera-english,reuters,cnn&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
+    //     },
+    //     {
+    //         url: 'https://newsapi.org/v2/everything?q=international+OR+global+OR+geopolitics+OR+"united+nations"&language=en&sortBy=popularity&apiKey=54f9eb335aff452192c71a0fdc90c621'
+    //     },
+    //     // {
+    //     //     url: 'https://newsapi.org/v2/top-headlines?everything?q=la+liga&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
+    //     // }
+    // ];
     
     // Helper function to safely fetch and return results
     const failedSource = [];
-    const safeFetch = ({url}) =>
-        fetch(url)
-            // .then(res => res.json())
+    const safeFetch = (category) =>
+        fetch(`/api/news/${category}`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error(`HTTP Error! Status: ${res.status}`);
@@ -27,11 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(err => {
                 console.warn(`Fetch failed: `, err);
-                failedSource.push(url);
+                failedSource.push(category);
                 return null;
             });
 
-    Promise.all(sources.map(safeFetch)).then(results => {
+    Promise.all(categories.map(safeFetch)).then(results => {
         container.innerHTML = '';
         const articles = [];
 
@@ -50,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // const cleanTitle = article.title.split('-').slice(0, -1).join('-').trim();
                 const publisher = article.source?.name || 'Unknown';
-                const imgURL = article.urlToImage || 'No Image';
+                const imgURL = article.urlToImage || 'img/news-image.jpg';
                 const isVideo = imgURL.match(/\.(mp4|webm|mov|ogg)$/i);
                 const publishedAt = article.publishedAt
                     ? new Date(article.publishedAt).toLocaleString()
@@ -82,10 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (failedSource.length > 0) {
-            const errorNotice = document.createElement('div');
-            errorNotice.className = 'error';
-            errorNotice.innerHTML = `<p>Failed to fetch news from: ${failedSource.join(', ')}</p>`;
-            container.prepend(errorNotice);
+            console.warn("Failed to fetch news from: " + failedSource.join(', '));
         }
     });
 });
