@@ -30,11 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
             articles.push(...data.articles);
         });
 
-        // Filter out articles without valid URLs
-        const validArticles = articles.filter(article => article.url);
+        // Remove duplicate articles by URL
+        const uniqueArticles = Array.from(new Map(articles.map(a => [a.url, a])).values());
 
-        if (validArticles.length > 0) {
-            validArticles.forEach(article => {
+        if (uniqueArticles.length > 0) {
+            uniqueArticles.forEach(article => {
                 const articleDiv = document.createElement('div');
                 articleDiv.className = 'news-card';
                 
