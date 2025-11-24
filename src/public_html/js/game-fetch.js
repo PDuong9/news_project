@@ -6,19 +6,19 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Helper function to safely fetch and return results
     const failedSource = [];
-    const safeFetch = (query) => {
-        fetch(`api/news/query/${query}`)
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error(`HTTP Error! Status: ${res.status}`);
-                }
-                return res.json();
-            })
-            .catch(err => {
-                console.warn(`Fetch failed: `, err);
-                failedSource.push(query);
-                return null;
-            });
+    const safeFetch = async (query) => {
+        try {
+            const res = fetch(`api/news/query/${query}`);
+            if (!res.ok) {
+                throw new Error(`HTTP Error! Status: ${res.status}`);
+            }
+            const data = await res.json();
+            return data;
+        } catch (err) {
+            console.warn(`Fetch failed: `, err);
+            failedSource.push(query);
+            return null;
+        }
     };
 
     Promise.all(queries.map(safeFetch)).then(results => {
