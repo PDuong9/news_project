@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Helper function to safely fetch and return results
     const failedSource = [];
     const safeFetch = (query) =>
-        fetch(`api/news/${query}`)
+        fetch(`api/news/query/${query}`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error(`HTTP Error! Status: ${res.status}`);
