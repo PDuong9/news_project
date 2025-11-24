@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.content');
     container.innerHTML = '<p id="loading">Loading news...</p>';
 
-    const categories = ["game", "video game", "esports"];
+    const queries = ["game", "video game", "esports"];
     // const sources = [
     //     {
     //         url: 'https://newsapi.org/v2/everything?q=game&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Helper function to safely fetch and return results
     const failedSource = [];
-    const safeFetch = (category) =>
-        fetch(`api/news/${category}`)
+    const safeFetch = (query) =>
+        fetch(`api/news/${query}`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error(`HTTP Error! Status: ${res.status}`);
@@ -27,11 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(err => {
                 console.warn(`Fetch failed: `, err);
-                failedSource.push(category);
+                failedSource.push(query);
                 return null;
             });
 
-    Promise.all(categories.map(safeFetch)).then(results => {
+    Promise.all(queries.map(safeFetch)).then(results => {
         container.innerHTML = '';
         const articles = [];
 
