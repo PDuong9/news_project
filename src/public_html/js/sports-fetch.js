@@ -1,5 +1,3 @@
-const { raw } = require("express");
-
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.content');
     container.innerHTML = '<p id="loading">Loading news...</p>';
