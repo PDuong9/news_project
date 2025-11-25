@@ -1,5 +1,3 @@
-const { url } = require("inspector");
-
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.content');
     container.innerHTML = '<p id="loading">Loading news...</p>';
@@ -29,9 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const safeFetch = (items) => {
         let url;
         if (items.type === 'source') {
-            url = `/api/news/source/${source}`;
+            url = `/api/news/source/${items.value}`;
         } else if (items.type === 'query') {
-            url = `/api/news/query/${query}`;
+            url = `/api/news/query/${items.value}`;
         }
 
         return fetch(url)
@@ -42,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return res.json();
             })
             .catch(err => {
-                console.warn(`Fetch failed: `, err);
+                console.warn(`Fetch failed: ${items.value}`, err);
                 failedSource.push(items.value);
                 return null;
             });
@@ -57,11 +55,16 @@ document.addEventListener('DOMContentLoaded', () => {
             articles.push(...data.articles);
         });
 
-        // Filter out articles without valid URLs
-        const validArticles = articles.filter(article => article.url);
+        // Remove duplicate articles by URL
+        const seen = new Set();
+        const uniqueArticles = articles.filter(a => {
+            if (seen.has(a.url)) return false;
+            seen.add(a.url);
+            return true;
+        });
 
-        if (validArticles.length > 0) {
-            validArticles.forEach(article => {
+        if (uniqueArticles.length > 0) {
+            uniqueArticles.forEach(article => {
                 const articleDiv = document.createElement('div');
                 articleDiv.className = 'news-card';
 

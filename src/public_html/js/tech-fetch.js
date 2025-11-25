@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.content');
     container.innerHTML = '<p id="loading">Loading news...</p>';
 
-    const categories = ["technology"];
+    const categories = ['"technology"'];
     // const sources = [
     //     {
     //         url: 'https://newsapi.org/v2/top-headlines?category=technology&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
@@ -17,19 +17,20 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Helper function to safely fetch and return results
     const failedSource = [];
-    const safeFetch = (category) =>
-        fetch(`/api/news/${category}`)
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error(`HTTP Error! Status: ${res.status}`);
-                }
-                return res.json();
-            })
-            .catch(err => {
-                console.warn(`Fetch failed: `, err);
-                failedSource.push(category);
-                return null;
-            });
+    const safeFetch = async (category) => {
+        try {
+            const res = await fetch(`api/news/query/${encodeURIComponent(category)}`);
+            if (!res.ok) {
+                throw new Error(`HTTP Error! Status: ${res.status}`);
+            }
+            const data = await res.json();
+            return data;
+        } catch (err) {
+            console.warn(`Fetch failed: `, err);
+            failedSource.push(category);
+            return null;
+        }
+    }
 
     Promise.all(categories.map(safeFetch)).then(results => {
         container.innerHTML = '';
@@ -40,11 +41,16 @@ document.addEventListener('DOMContentLoaded', () => {
             articles.push(...data.articles);
         });
 
-        // Filter out articles without valid URLs
-        const validArticles = articles.filter(article => article.url);
+        // Remove duplicate articles by URL
+        const seen = new Set();
+        const uniqueArticles = articles.filter(a => {
+            if (seen.has(a.url)) return false;
+            seen.add(a.url);
+            return true;
+        });
 
-        if (validArticles.length > 0) {
-            validArticles.forEach(article => {
+        if (uniqueArticles.length > 0) {
+            uniqueArticles.forEach(article => {
                 const articleDiv = document.createElement('div');
                 articleDiv.className = 'news-card';
                 

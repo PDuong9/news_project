@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             seen.add(a.url);
             return true;
         });
+        
         if (uniqueArticles.length > 0) {
             uniqueArticles.forEach(article => {
                 const articleDiv = document.createElement('div');
