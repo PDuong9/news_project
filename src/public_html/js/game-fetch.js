@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             failedSource.push(query);
             return null;
         }
-    };
+    }
 
     Promise.all(queries.map(safeFetch)).then(results => {
         container.innerHTML = '';
@@ -38,7 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Remove duplicate articles by URL
-        const uniqueArticles = Array.from(new Map(articles.map(a => [a.url, a])).values());
+        const seen = new Set();
+        const uniqueArticles = articles.filter(a => {
+            if (seen.has(a.url)) return false;
+            seen.add(a.url);
+            return true;
+        });
 
         if (uniqueArticles.length > 0) {
             uniqueArticles.forEach(article => {

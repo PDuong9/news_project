@@ -2,23 +2,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.content');
     container.innerHTML = '<p id="loading">Loading news...</p>';
 
-    const categories = ["business","health","entertainment","general","technology","science","sports"];
+    const categories = [
+        '"business"',
+        '"health"',
+        '"entertainment"',
+        '"general"',
+        '"technology"',
+        '"science"',
+        '"sports"'
+    ];
     
     // Helper function to safely fetch and return results
     const failedSource = [];
-    const safeFetch = (category) =>
-        fetch(`/api/news/${category}`)
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error(`HTTP Error! Status: ${res.status}`);
-                }
-                return res.json();
-            })
-            .catch(err => {
-                console.warn(`Fetch failed: `, err);
-                failedSource.push(category);
-                return null;
-            });
+    const safeFetch = async (category) => {
+        try {
+            const res = await fetch(`api/news/query/${encodeURIComponent(category)}`);
+            if (!res.ok) {
+                throw new Error(`HTTP Error! Status: ${res.status}`);
+            }
+            const data = await res.json();
+            return data;
+        } catch (err) {
+            console.warn(`Fetch failed: `, err);
+            failedSource.push(category);
+            return null;
+        }
+    }
 
     Promise.all(categories.map(safeFetch)).then(results => {
         container.innerHTML = '';
