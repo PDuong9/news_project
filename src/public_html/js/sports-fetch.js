@@ -1,3 +1,5 @@
+const { raw } = require("express");
+
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.content');
     container.innerHTML = '<p id="loading">Loading news...</p>';
@@ -44,7 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const articleDiv = document.createElement('div');
                 articleDiv.className = 'news-card';
                 
-                const cleanTitle = article.title.split('-').slice(0, -1).join('-').trim();
+                // const cleanTitle = article.title.split('-').slice(0, -1).join('-').trim();
+                const rawTitle = article.title || 'No title';
+                const cleanTitle = rawTitle.includes('-') ? rawTitle.split('-').slice(0, -1).join('-').trim() : rawTitle;
                 const publisher = article.source?.name?.trim() || 'Unknown';
                 const imgURL = article.urlToImage || 'img/news-image.jpg';
                 const isVideo = imgURL.match(/\.(mp4|webm|mov|ogg)$/i);
