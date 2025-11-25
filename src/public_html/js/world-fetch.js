@@ -3,48 +3,32 @@ document.addEventListener('DOMContentLoaded', () => {
     container.innerHTML = '<p id="loading">Loading news...</p>';
 
     const items = [
-        { type: "source", value: "bbc-news" },
-        { type: "source", value: "al-jazeera-english" },
-        { type: "source", value: "reuters" },
-        { type: "source", value: "cnn" },
-        { type: "query", value: "international OR global OR geopolitics OR united nations" }
+        { type: "source", value: '"bbc-news"' },
+        { type: "source", value: '"al-jazeera-english"' },
+        { type: "source", value: '"reuters"' },
+        { type: "source", value: '"cnn"' },
+        { type: "query", value: '"international OR global OR geopolitics OR united nations"' }
     ];
-
-    // const sources = [
-    //     {
-    //         url: 'https://newsapi.org/v2/top-headlines?sources=bbc-news,al-jazeera-english,reuters,cnn&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-    //     },
-    //     {
-    //         url: 'https://newsapi.org/v2/everything?q=international+OR+global+OR+geopolitics+OR+"united+nations"&language=en&sortBy=popularity&apiKey=54f9eb335aff452192c71a0fdc90c621'
-    //     },
-    //     // {
-    //     //     url: 'https://newsapi.org/v2/top-headlines?everything?q=la+liga&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-    //     // }
-    // ];
     
     // Helper function to safely fetch and return results
     const failedSource = [];
-    const safeFetch = (items) => {
-        let url;
-        if (items.type === 'source') {
-            url = `/api/news/source/${items.value}`;
-        } else if (items.type === 'query') {
-            url = `/api/news/query/${items.value}`;
-        }
+    const safeFetch = async (item) => {
+        const { type, value } = item;
+        const url = type === 'source'
+            ? `/api/news/source/${value}`
+            : `/api/news/query/${value}`;
 
-        return fetch(url)
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error(`HTTP Error! Status: ${res.status}`);
-                }
-                return res.json();
-            })
-            .catch(err => {
-                console.warn(`Fetch failed: ${items.value}`, err);
-                failedSource.push(items.value);
-                return null;
-            });
-    };
+        try {
+            const res = await fetch(url);
+            if (!res.ok) throw new Error(`HTTP Error! Status: ${res.status}`);
+            const data = await res.json();
+            return data;
+        } catch (err) {
+            console.warn(`Fetch failed for ${value}:`, err);
+            failedSource.push(value);
+            return null;
+        }
+    }
 
     Promise.all(items.map(safeFetch)).then(results => {
         container.innerHTML = '';
