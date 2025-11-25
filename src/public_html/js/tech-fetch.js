@@ -3,17 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     container.innerHTML = '<p id="loading">Loading news...</p>';
 
     const categories = ['"technology"'];
-    // const sources = [
-    //     {
-    //         url: 'https://newsapi.org/v2/top-headlines?category=technology&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-    //     },
-    //     // {
-    //     //     url: 'https://newsapi.org/v2/everything?q=international+OR+global+OR+geopolitics+OR+"united+nations"&language=en&sortBy=popularity&apiKey=54f9eb335aff452192c71a0fdc90c621'
-    //     // },
-    //     // {
-    //     //     url: 'https://newsapi.org/v2/top-headlines?everything?q=la+liga&language=en&apiKey=54f9eb335aff452192c71a0fdc90c621'
-    //     // }
-    // ];
     
     // Helper function to safely fetch and return results
     const failedSource = [];
