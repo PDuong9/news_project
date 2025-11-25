@@ -31,8 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Remove duplicate articles by URL
+        const validArticles = articles.filter(a => a.url);
         const seen = new Set();
-        const uniqueArticles = articles.filter(a => {
+        const uniqueArticles = validArticles.filter(a => {
             if (seen.has(a.url)) return false;
             seen.add(a.url);
             return true;
