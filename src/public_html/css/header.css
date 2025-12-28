@@ -1,9 +1,7 @@
 /* Google font source */
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 header {
-    font-family: 'Indie Flower', cursive;
-
+    font-family: "Nunito", sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -110,7 +108,7 @@ header {
     background: none;
     border: none;
     color: greenyellow;
-    font-family: 'Indie Flower', cursive;  
+    font-family: "Nunito", sans-serif;
     font-size: 20px;                      
     padding: 5px;
     cursor: pointer;
@@ -132,9 +130,7 @@ header {
 .login-board {
     position: absolute;
     top: 100%;
-    right: -25px;
-    width: auto;
-    height: auto;
+    right: -13px;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 6px;
@@ -146,12 +142,16 @@ header {
     text-align: center;
 }
 
+.login-board h2 {
+    font-size: 35px;
+}
+
 .hidden {
-  display: none;
+    display: none;
 }
 
 .link-button {
-    font-family: 'Indie Flower', cursive;  
+    font-family: "Nunito", sans-serif;
     font-size: 18px;
     background: none;
     border: none;

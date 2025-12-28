@@ -33,9 +33,7 @@ class HeaderComponent extends HTMLElement {
                     <li><a href="forum.html">Forum</a></li>
                     <li>|</li>
                     <li>
-                        <button id="loginBtn" class="login-button">
-                            <span>Login</span>
-                        </button>
+                        <button id="loginBtn" class="login-button"><span>Login</span></button>
 
                         <div id="loginBoard" class="login-board hidden">
                             <h2>Sign In</h2>

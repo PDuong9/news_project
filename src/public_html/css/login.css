@@ -1,18 +1,17 @@
 /* Google font source */
-/* @import url('https://fonts.googleapis.com/css2?family=Newsreader&display=swap'); */
-
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 .login-menu {
   position: relative;
   display: inline-block;
 }
 
-#loginBtn {
+/* .login-button {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1rem;
-}
+  font-size: 2rem;
+} */
 
 .dropdown {
   position: absolute;
