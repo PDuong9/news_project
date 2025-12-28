@@ -42,23 +42,17 @@ class HeaderComponent extends HTMLElement {
                                 <button class="link-button" id="showSignUp">Register</button>
                             </p>
                             <div class="social-login">
-                                <a href="https://accounts.google.com" target="_blank">
-                                    <button class="social-icon">
-                                        <img src="./img/google.png" alt="Google">
-                                    </button>
-                                </a>
+                                <button onclick="window.open('https://accounts.google.com')" class="social-icon">
+                                    <img src="./img/google.png" alt="Google">
+                                </button>
 
-                                <a href="https://www.facebook.com" target="_blank">
-                                    <button class="social-icon">
-                                        <img src="./img/facebook.png" alt="Facebook">
-                                    </button>
-                                </a>
+                                <button onclick="window.open('https://www.facebook.com')" class="social-icon">
+                                    <img src="./img/facebook.png" alt="Facebook">
+                                </button>
 
-                                <a href="https://github.com" target="_blank">
-                                    <button class="social-icon">
-                                        <img src="./img/github.png" alt="Github">
-                                    </button>
-                                </a>
+                                <button onclick="window.open('https://github.com')" class="social-icon">
+                                    <img src="./img/github.png" alt="Github">
+                                </button>
                             </div>
                             <p>------------- or -------------</p>
                             <input type="email" id="username" placeholder="Email" /><br>
